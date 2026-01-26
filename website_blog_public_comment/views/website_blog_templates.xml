@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="opt_blog_post_comment_public" inherit_id="website_blog.opt_blog_post_comment">
+        <!-- Display the additional public fields-->
+        <xpath expr="//t[@t-call='portal.message_thread']" position="before">
+            <div t-if="request.env.user._is_public()" class="row g-2 mb-3 mt-4" id="public_user_fields" groups="base.group_public">
+                <div class="col-md-4">
+                    <input type="text" id="public_name" class="form-control"
+                           placeholder="Full Name (required)"
+                           required="1"/>
+                </div>
+                <div class="col-md-4">
+                    <input type="email" id="public_email" class="form-control" placeholder="Email (required)"
+                           required="1"/>
+                </div>
+                <div class="col-md-4">
+                    <input type="url" id="public_website" class="form-control" placeholder="Website"/>
+                </div>
+            </div>
+        </xpath>
+
+        <!-- Update values in message_thread to pass token, hash, and partner -->
+        <xpath expr="//t[@t-call='portal.message_thread']" position="replace">
+            <t t-call="portal.message_thread">
+                <t t-set="object" t-value="blog_post"/>
+                <t t-set="token" t-value="token"/>
+                <t t-set="hash" t-value="hash"/>
+                <t t-set="pid" t-value="pid"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Allow public users to create mail.message records for blog post comments-->
+    <record model="ir.model.access" id="mail.access_mail_message_all">
+        <field name="perm_create" eval="1"/>
+    </record>
+</odoo>
