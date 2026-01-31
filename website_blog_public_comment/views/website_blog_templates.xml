@@ -3,7 +3,7 @@
     <template id="opt_blog_post_comment_public" inherit_id="website_blog.opt_blog_post_comment">
         <!-- Display the additional public fields-->
         <xpath expr="//t[@t-call='portal.message_thread']" position="before">
-            <div t-if="request.env.user._is_public()" class="row g-2 mb-3 mt-4" id="public_user_fields" groups="base.group_public">
+            <div class="row g-2 mb-3 mt-4" id="public_user_fields" groups="base.group_public">
                 <div class="col-md-4">
                     <input type="text" id="public_name" class="form-control"
                            placeholder="Full Name (required)"

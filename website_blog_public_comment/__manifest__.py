@@ -13,12 +13,12 @@
     'price': 0,
     'currency': 'EUR',
     'images': [],
-    'depends': ['portal', 'website_blog'],
+    'depends': ['portal', 'website_blog', 'mail'],
     'data': [
         # Security
-        'security/ir_rules.xml',
         # Data Files
-
+        'data/email_template.xml',
+        # 'data/base_automation.xml',
         # Views
         'views/website_blog_templates.xml',
         # Menus

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Server Action-->
+    <record model="ir.actions.server" id="blog_post_comment_notification_server_actions">
+        <field name="name">Anonymous Blog Comment Notification Server Action</field>
+        <field name="model_id" ref="mail.model_mail_message"/>
+        <field name="state">mail_post</field>
+        <field name="template_id" ref="website_blog_public_comment.blog_post_notification_mail_template"/>
+        <field name="mail_post_method">email</field>
+    </record>
+
+    <!-- Automation rule triggering the action above -->
+    <record model="base.automation" id="blog_post_comment_notification_automation">
+        <field name="name">Anonymous Blog Comment Notification</field>
+        <field name="model_id" ref="mail.model_mail_message"/>
+        <field name="trigger">on_create</field>
+        <field name="filter_domain" eval="['&amp;', '&amp;', ('model', '=', 'blog.post'), ('author_id', 'in', [ref('base.partner_root')]), ('subtype_id', '=', ref('website_blog_public_comment.mt_blog_public_comment'))]"/>
+        <field name="action_server_ids" eval="[(6, 0, [ref('website_blog_public_comment.blog_post_comment_notification_server_actions')])]"/>
+    </record>
+</odoo>
